@@ -7,7 +7,9 @@ const client = require('twilio')(accountSid, authToken);
 
 const url = 'https://www.amazon.in/Apple-MacBook-Chip-13-inch-256GB/dp/B08N5XSG8Z/ref=sr_1_3?keywords=macbook&qid=1665235135&qu=eyJxc2MiOiI1LjAwIiwicXNhIjoiNC40NyIsInFzcCI6IjMuNTQifQ%3D%3D&sr=8-3'
 const product = { Productname: '', Productprice: '', Producturl: '' };
-const getHtml = async () => {
+const handleInterval = setInterval(getHtml, 30000);
+//checking every 30 seconds
+async function getHtml () {
     const response = await axios.get(url);
     
     const $ = cheerio.load(response.data);
@@ -33,6 +35,7 @@ const getHtml = async () => {
             //it returns a promise
         }).then(message => {
             console.log("message has been sent");
+            clearInterval(handleInterval);
         }).then(err => {
             console.log("error");
         })
