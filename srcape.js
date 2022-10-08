@@ -7,7 +7,7 @@ const client = require('twilio')(accountSid, authToken);
 
 
 const url = 'https://www.amazon.in/Apple-MacBook-Chip-13-inch-256GB/dp/B08N5XSG8Z/ref=sr_1_3?keywords=macbook&qid=1665235135&qu=eyJxc2MiOiI1LjAwIiwicXNhIjoiNC40NyIsInFzcCI6IjMuNTQifQ%3D%3D&sr=8-3'
-const product = { name: '', price: '' };
+const product = { name: '', price: '' , url: ''};
 const getHtml = async () => {
     const response = await axios.get(url);
     // console.log(response);
@@ -29,7 +29,7 @@ const getHtml = async () => {
     //notifitcation part:
      if (product.price < 88990) {
         client.messages.create({
-            body: `the price of ${itemName} went below ${priceValue}`,
+             body: `the price of ${itemName} went below ${priceValue} at ${url}`,
             from: "My_Twilio_phone_number",//registered twilio phone number
             to: "My_phone_number",//type your phone number here
             //it returns a promise
