@@ -9,19 +9,18 @@ const url = 'https://www.amazon.in/Apple-MacBook-Chip-13-inch-256GB/dp/B08N5XSG8
 const product = { Productname: '', Productprice: '', Producturl: '' };
 const getHtml = async () => {
     const response = await axios.get(url);
-    // console.log(response);
+    
     const $ = cheerio.load(response.data);
     const itemContainer = $('div#dp-container');
     const itemName = itemContainer.find('span#productTitle').text()
-    // console.log(itemName);
+  
     const price = itemContainer.find('span .a-price-whole')
         .first()//returns only the first value that matches
         .text()
         .replace(/[,.]/g, '');
-    // console.log(price);
+
     const priceValue = parseInt(price);
     //string into an integer in order to use comparison operators
-    // console.log(priceValue)
     product.Productname = itemName;
     product.Productprice = priceValue;
     product.Producturl = url;
