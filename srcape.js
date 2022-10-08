@@ -5,7 +5,6 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
 
-
 const url = 'https://www.amazon.in/Apple-MacBook-Chip-13-inch-256GB/dp/B08N5XSG8Z/ref=sr_1_3?keywords=macbook&qid=1665235135&qu=eyJxc2MiOiI1LjAwIiwicXNhIjoiNC40NyIsInFzcCI6IjMuNTQifQ%3D%3D&sr=8-3'
 const product = { Productname: '', Productprice: '', Producturl: '' };
 const getHtml = async () => {
@@ -26,18 +25,17 @@ const getHtml = async () => {
     product.Productname = itemName;
     product.Productprice = priceValue;
     product.Producturl = url;
-    
-    //notifitcation part:
-     if (product.Productprice < 88990) {
+    //notification part:
+    if (product.Productprice < 90990) {
         client.messages.create({
-             body: `the price of ${itemName} went below ${priceValue} at ${url}`,
-            from: "My_Twilio_phone_number",//registered twilio phone number
-            to: "My_phone_number",//type your phone number here
+            body: `the price of ${itemName} went below ${priceValue} at ${url}`,
+            from: "twilio registered phone number",//registered twilio phone number
+            to: "your phone number",//type your phone number here
             //it returns a promise
         }).then(message => {
-            console.log(message);
+            console.log("message has been sent");
         }).then(err => {
-            console.log(err);
+            console.log("error");
         })
     }
 
