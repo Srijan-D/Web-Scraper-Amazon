@@ -28,7 +28,7 @@ const getHtml = async () => {
     //notification part:
     if (product.Productprice < 90990) {
         client.messages.create({
-            body: `the price of ${itemName} went below ${priceValue} at ${url}`,
+            body: `the price of ${itemName} went below 90990 and is priced at ${priceValue} buy now at ${url}`,
             from: "twilio registered phone number",//registered twilio phone number
             to: "your phone number",//type your phone number here
             //it returns a promise
