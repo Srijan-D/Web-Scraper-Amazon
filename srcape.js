@@ -25,3 +25,20 @@ const getHtml = async () => {
     // console.log(priceValue)
     product.price = priceValue;
     product.name = itemName;
+    
+    //notifitcation part:
+     if (product.price < 88990) {
+        client.messages.create({
+            body: `the price of ${itemName} went below ${priceValue}`,
+            from: "My_Twilio_phone_number",
+            to: "My_phone_number",
+            //it returns a promise
+        }).then(message => {
+            console.log("sent");
+        }).then(err => {
+            console.log("error");
+        })
+    }
+
+}
+getHtml();
