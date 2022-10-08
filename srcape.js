@@ -30,13 +30,13 @@ const getHtml = async () => {
      if (product.price < 88990) {
         client.messages.create({
             body: `the price of ${itemName} went below ${priceValue}`,
-            from: "My_Twilio_phone_number",
-            to: "My_phone_number",
+            from: "My_Twilio_phone_number",//registered twilio phone number
+            to: "My_phone_number",//type your phone number here
             //it returns a promise
         }).then(message => {
-            console.log("sent");
+            console.log(message);
         }).then(err => {
-            console.log("error");
+            console.log(err);
         })
     }
 
