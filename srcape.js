@@ -11,7 +11,6 @@ const handleInterval = setInterval(getHtml, 30000);
 //checking every 30 seconds
 async function getHtml () {
     const response = await axios.get(url);
-    
     const $ = cheerio.load(response.data);
     const itemContainer = $('div#dp-container');
     const itemName = itemContainer.find('span#productTitle').text()
@@ -36,10 +35,8 @@ async function getHtml () {
         }).then(message => {
             console.log("message has been sent");
             clearInterval(handleInterval);
-        }).then(err => {
-            console.log("error");
         })
     }
 
 }
-getHtml();
+
